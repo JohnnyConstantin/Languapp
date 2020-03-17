@@ -1,31 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="290dp"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="200dp"
+        android:background="#90D04DFF"
+        android:foregroundGravity="center"
+        android:visibility="visible" />
 
-        <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="350dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="150dp"
-            android:orientation="vertical">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="118dp"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="82dp"
+        android:background="#99D15AFD"
+        android:foregroundGravity="center" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:text="Button" />
-        </LinearLayout>
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/pass"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="#FD424242"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:text="@string/sign"
+        android:textColor="#BEBEBE" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="290dp"
+        android:background="#11000000"
+        android:drawableLeft="@drawable/ic_abd"
+        android:ems="10"
+        android:fontFamily="sans-serif-medium"
+        android:foregroundGravity="left"
+        android:gravity="start"
+        android:hint="@string/name"
+        android:inputType="textPersonName"
+        android:textSize="16dp" />
+
+    <EditText
+        android:id="@+id/pass"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="#11000000"
+        android:drawableLeft="@drawable/ic_lock"
+        android:ems="10"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="start"
+        android:hint="@string/pass"
+        android:inputType="textPersonName"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="204dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/forgot"
+        android:textColor="#F3373635" />
+
+    <Button
+        android:id="@+id/button3"
+        style="@android:style/Widget.Holo.Light.Button.Inset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentBottom="false"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="5dp"
+        android:background="#333333"
+        android:fontFamily="sans-serif-medium"
+        android:padding="10dp"
+        android:text="@string/reg"
+        android:textColor="#FF9800"
+        android:textSize="14sp" />
+
+</RelativeLayout>
