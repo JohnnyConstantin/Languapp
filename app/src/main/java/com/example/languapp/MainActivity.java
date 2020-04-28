@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private void ShowRegisterWindow() {
         AlertDialog.Builder  dialog = new AlertDialog.Builder(this);
 
-        dialog.setTitle("Зарегистироваться");
+        dialog.setTitle("Регистрация");
         dialog.setMessage("Введите ваши данные для регистрации");
 
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -67,13 +67,13 @@ public class MainActivity extends AppCompatActivity {
         final MaterialEditText name = register_window.findViewById(R.id.nameField);
         final MaterialEditText phone = register_window.findViewById(R.id.phoneField);
 
-        dialog.setNegativeButton("Отменить", new DialogInterface.OnClickListener() {
+        dialog.setNegativeButton("Назад", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
                 dialogInterface.dismiss();
             }
         });
-        dialog.setPositiveButton("Добавить", new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton("Зарегистрироваться", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
                 if(TextUtils.isEmpty(email.getText().toString())){
