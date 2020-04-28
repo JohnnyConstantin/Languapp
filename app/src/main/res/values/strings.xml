@@ -5,4 +5,8 @@
     <string name="sign">Sign in</string>
     <string name="forgot">Forgot password?</string>
     <string name="reg">Do not have an account?</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="type_your_name">Type your name</string>
+    <string name="type_your_phone">Type your phone</string>
 </resources>
