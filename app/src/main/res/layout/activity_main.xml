@@ -11,11 +11,13 @@
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="290dp"
+        android:layout_below="@+id/imageView"
         android:layout_alignParentStart="false"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="38dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="241dp"
         android:background="#90D04DFF"
         android:foregroundGravity="center"
         android:visibility="visible" />
@@ -29,7 +31,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="38dp"
         android:layout_marginTop="82dp"
-        android:background="#99D15AFD"
+        android:background="#90D04DFF"
         android:foregroundGravity="center" />
 
     <Button
