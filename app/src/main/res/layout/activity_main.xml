@@ -35,34 +35,8 @@
         android:layout_marginTop="82dp"
         android:adjustViewBounds="false"
         android:background="#9CFFC396"
-        android:scaleType="centerInside"
+        android:scaleType="fitEnd"
         app:srcCompat="@drawable/ic_demo2" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="11dp"
-        android:fontFamily="@font/chonburi"
-        android:text="Langu"
-        android:textColor="#414141"
-        android:textSize="36sp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="127dp"
-        android:layout_marginTop="-20dp"
-        android:fontFamily="@font/chonburi"
-        android:text="app"
-        android:textColor="#414141"
-        android:textSize="30sp" />
 
     <Button
         android:id="@+id/btnSignIn"
@@ -73,7 +47,7 @@
         android:layout_alignParentEnd="false"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:background="#333333"
+        android:background="#E6333333"
         android:foregroundGravity="center"
         android:gravity="center"
         android:text="@string/sign"
@@ -135,7 +109,7 @@
         android:layout_alignParentBottom="false"
         android:layout_marginStart="0dp"
         android:layout_marginTop="5dp"
-        android:background="#333333"
+        android:background="#E6333333"
         android:fontFamily="sans-serif-medium"
         android:padding="10dp"
         android:text="@string/reg"
