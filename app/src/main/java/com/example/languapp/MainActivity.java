@@ -1,15 +1,19 @@
 package com.example.languapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import com.example.languapp.Models.Users;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
@@ -24,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase db;
     DatabaseReference users;
+
+    EditText Sign_mail, Sign_pass;
 
     RelativeLayout relative;
 
@@ -42,16 +48,29 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseDatabase.getInstance();
         users = db.getReference("Users");
 
-    btnRegister.setOnClickListener(new View.OnClickListener() {
+        Sign_mail = findViewById(R.id.mail);
+        Sign_pass = findViewById(R.id.pass);
+
+
+
+                btnRegister.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             ShowRegisterWindow();
         }
     });
 
+    btnSignIn.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Login();
+        }
+    });
 
     }
 
+
+/////////////////////////////           Registration window           /////////////////////////////
     private void ShowRegisterWindow() {
         AlertDialog.Builder  dialog = new AlertDialog.Builder(this);
 
@@ -95,7 +114,10 @@ public class MainActivity extends AppCompatActivity {
                     Snackbar.make(relative, "Введите Ваш телефон", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
-                //registration of user
+                
+
+                                        //// Registration itself ////
+
                 auth.createUserWithEmailAndPassword(email.getText().toString(), pass.getText().toString())
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
@@ -106,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                                 user.setPhone(phone.getText().toString());
                                 user.setPass(pass.getText().toString());
 
-                                users.child(user.getEmail())
+                                users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(user)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
@@ -122,4 +144,33 @@ public class MainActivity extends AppCompatActivity {
 
         dialog.show();
     }
+/////////////////////////////           Registration window           /////////////////////////////
+
+
+
+
+///////////////////////////////         Logging in              ///////////////////////////////
+
+
+    private void Login(){
+
+        auth.signInWithEmailAndPassword(Sign_mail.getText().toString(), Sign_pass.getText().toString())
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                    startActivity(new Intent(MainActivity.this, Home.class ));
+                    finish();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Snackbar.make(relative, "Ошибка авторизации " + e.getMessage(), Snackbar.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+///////////////////////////////         Logging in              ///////////////////////////////
+
+
+
 }
