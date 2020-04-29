@@ -1,5 +1,18 @@
 package com.example.languapp;
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//                                      LANGUAPP
+//  App for learning english using cards with words in case of finishing itacademy Samsung
+//  Special thanks to Leonid Sergeevich Sheshukov
+//
+//  Database: Firebase google (maybe will move db and server to Spring lately)
+//
+// @Made by JohnnyConstantin
+// Copying and posting the code in the public domain is prohibited
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference users;
 
     EditText Sign_mail, Sign_pass;
-
     RelativeLayout relative;
 
 
@@ -53,25 +65,24 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                btnRegister.setOnClickListener(new View.OnClickListener() {
+        btnRegister.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             ShowRegisterWindow();
         }
     });
-
-    btnSignIn.setOnClickListener(new View.OnClickListener() {
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Login();
         }
     });
-
     }
 
 
 /////////////////////////////           Registration window           /////////////////////////////
-    private void ShowRegisterWindow() {
+
+private void ShowRegisterWindow() {
         AlertDialog.Builder  dialog = new AlertDialog.Builder(this);
 
         dialog.setTitle("Регистрация");
@@ -129,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
                                 user.setPass(pass.getText().toString());
 
                                 users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                        .setValue(user)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    .setValue(user)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
                                                 Snackbar.make(relative, "Пользователь добавлен!", Snackbar.LENGTH_SHORT).show();
@@ -140,10 +151,10 @@ public class MainActivity extends AppCompatActivity {
                         });
             }
         });
-
-
         dialog.show();
     }
+
+
 /////////////////////////////           Registration window           /////////////////////////////
 
 
