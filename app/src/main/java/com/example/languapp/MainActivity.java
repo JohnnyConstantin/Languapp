@@ -97,6 +97,7 @@ private void ShowRegisterWindow() {
         final MaterialEditText name = register_window.findViewById(R.id.nameField);
         final MaterialEditText phone = register_window.findViewById(R.id.phoneField);
 
+////////////////////////////         Диалоговое окно для регистрации        ///////////////////////
         dialog.setNegativeButton("Назад", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
@@ -112,17 +113,20 @@ private void ShowRegisterWindow() {
                 }
 
                 if(TextUtils.isEmpty(name.getText().toString())){
-                    Snackbar.make(relative, "Введите Ваше имя", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(relative, "Введите Ваше имя",
+                            Snackbar.LENGTH_SHORT).show();
                     return;
                 }
 
                 if(pass.getText().toString().length() < 5){
-                    Snackbar.make(relative, "Введите Ваш пароль (5 символов)", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(relative, "Введите Ваш пароль (5 символов)",
+                            Snackbar.LENGTH_SHORT).show();
                     return;
                 }
 
                 if(TextUtils.isEmpty(phone.getText().toString())){
-                    Snackbar.make(relative, "Введите Ваш телефон", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(relative, "Введите Ваш телефон",
+                            Snackbar.LENGTH_SHORT).show();
                     return;
                 }
 
