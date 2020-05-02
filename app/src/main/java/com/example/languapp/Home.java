@@ -4,12 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.languapp.Fragments.ChatFragment;
 import com.example.languapp.Fragments.HomeFragment;
@@ -35,6 +31,9 @@ public class Home extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
+
+                /////// Обработка нажатия на иконку в навигейшн бар и создание фрагментов ///////
+
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
                     Fragment selectedFragment = null;

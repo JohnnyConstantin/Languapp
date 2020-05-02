@@ -85,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
 private void ShowRegisterWindow() {
         AlertDialog.Builder  dialog = new AlertDialog.Builder(this);
 
+        ///////             Создание диалога с регистрацией             ///////
+
         dialog.setTitle("Регистрация");
         dialog.setMessage("Введите ваши данные для регистрации");
 
@@ -98,13 +100,22 @@ private void ShowRegisterWindow() {
         final MaterialEditText phone = register_window.findViewById(R.id.phoneField);
 
 ////////////////////////////         Диалоговое окно для регистрации        ///////////////////////
+
         dialog.setNegativeButton("Назад", new DialogInterface.OnClickListener() {
+
+            ///////     Закрытие окна регистрации по нажатию кнопки "Назад"     ///////
+
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
                 dialogInterface.dismiss();
             }
         });
+
+
         dialog.setPositiveButton("Зарегистрироваться", new DialogInterface.OnClickListener() {
+
+            ///////   Регистрация успешная, если все условия ниже выполнены     ///////
+
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
                 if(TextUtils.isEmpty(email.getText().toString())){
@@ -129,12 +140,16 @@ private void ShowRegisterWindow() {
                             Snackbar.LENGTH_SHORT).show();
                     return;
                 }
-
+////////////////////////////         Диалоговое окно для регистрации        ///////////////////////
 
                                         //// Registration itself ////
 
-                auth.createUserWithEmailAndPassword(email.getText().toString(), pass.getText().toString())
+                auth.createUserWithEmailAndPassword(email.getText().toString(), pass.getText().
+                        toString())
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+
+                /////// создание нового пользователя в бд с введенными ранее полями ///////
+
                             @Override
                             public void onSuccess(AuthResult authResult) {
                                 Users user = new Users();
@@ -143,20 +158,24 @@ private void ShowRegisterWindow() {
                                 user.setPhone(phone.getText().toString());
                                 user.setPass(pass.getText().toString());
 
-                                users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(user)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                Snackbar.make(relative, "Пользователь добавлен!", Snackbar.LENGTH_SHORT).show();
-                                            }
-                                        });
+                            users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                             .setValue(user)
+                             .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                 @Override
+                                 public void onSuccess(Void aVoid) {
+
+                 /////// создаем пользователя в базе и выводим сообщение  ///////
+
+                                 Snackbar.make(relative, "Пользователь добавлен!",
+                                         Snackbar.LENGTH_SHORT).show();
+                                 }
+                             });
                             }
                         });
             }
         });
         dialog.show();
-    }
+}
 
 
 /////////////////////////////           Registration window           /////////////////////////////
