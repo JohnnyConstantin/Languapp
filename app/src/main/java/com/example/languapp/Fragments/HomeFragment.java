@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import androidx.fragment.app.Fragment;
 import com.example.languapp.R;
+import com.squareup.picasso.Picasso;
+
 import java.io.IOException;
 
 import static android.app.Activity.RESULT_OK;
