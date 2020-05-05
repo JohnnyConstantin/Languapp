@@ -13,7 +13,7 @@ import com.example.languapp.Fragments.TasksFragment;
 import com.example.languapp.Fragments.TestsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Home extends AppCompatActivity {
+public class Home extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

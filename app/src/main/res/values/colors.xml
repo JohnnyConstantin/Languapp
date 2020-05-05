@@ -10,6 +10,6 @@
     <color name="Yellow">#F5DC78</color>
     <color name="Grey">#E6333333</color>
     <color name="Orange">#FF9800</color>
-    <color name="LightGrey" #7A7A7A</color>
+    <color name="LightGrey"> #7A7A7A</color>
 
 </resources>

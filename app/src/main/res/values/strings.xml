@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Languapp</string>
+    <string name="app_name">languapp</string>
     <string name="pass">Пароль</string>
     <string name="sign">Войти</string>
     <string name="forgot">Забыли пароль?</string>
