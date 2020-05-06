@@ -18,12 +18,20 @@ public class TestsFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_tests, container, false);
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////  Создание адаптера и подвязка его к этому фрагменту     //////////////////
+///////////                                                                              ///////////
+///////////             my_recycler_view - id контейнера в fragment_tests.xml            ///////////
+
+
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.my_recycler_view);
 
         MyAdapter listAdapter = new MyAdapter();
         recyclerView.setAdapter(listAdapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
         return v;
     }

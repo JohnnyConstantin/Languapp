@@ -31,7 +31,7 @@ public class Home extends MainActivity {
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
 
-                /////// Обработка нажатия на иконку в навигейшн бар и создание фрагментов ///////
+//////////////   Обработка нажатия на иконку в навигейшн бар и создание фрагментов    //////////////
 
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
@@ -56,6 +56,7 @@ public class Home extends MainActivity {
 
                     return true;
                 }
+////////////////////////////////////////////////////////////////////////////////////////////////////
             };
 
 }

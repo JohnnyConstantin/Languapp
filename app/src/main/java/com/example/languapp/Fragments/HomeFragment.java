@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import androidx.fragment.app.Fragment;
 import com.example.languapp.R;
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
@@ -36,19 +35,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
        return v;
     }
 
+//////////////    Функция вытаскивания фото из галлереи и засовывания его в Im view   //////////////
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-
-        /////// Функция вытаскивания фото из галлереи и засовывания его в Im view ///////
 
         Bitmap bitmap = null;
 
         switch (requestCode) {
             case GALLERY_RES:
-                if(resultCode == RESULT_OK) {
+                if (resultCode == RESULT_OK) {
                     Uri selectedImage = imageReturnedIntent.getData();
-                    try{
+                    try {
                         bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), selectedImage);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -57,15 +55,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 }
         }
     }
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+//////////////////////////////      Отправляем интент в галлерею     ///////////////////////////////
+//////////////////////          по нажатию на кнопку с плюсиком                /////////////////////
     @Override
     public void onClick(View v) {
-
-        /////// Отправляем интент в галлерею ///////
 
         //Toast.makeText(getActivity(), "Проверка", Toast.LENGTH_SHORT).show();
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
         startActivityForResult(photoPickerIntent, GALLERY_RES);
     }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 }

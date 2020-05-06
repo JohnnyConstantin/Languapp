@@ -80,12 +80,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-/////////////////////////////           Registration window           /////////////////////////////
+/////////////////////////////           Registration window            /////////////////////////////
 
 private void ShowRegisterWindow() {
         AlertDialog.Builder  dialog = new AlertDialog.Builder(this);
 
-        ///////             Создание диалога с регистрацией             ///////
+////////////////////             Создание диалога с регистрацией             ///////////////////////
 
         dialog.setTitle("Регистрация");
         dialog.setMessage("Введите ваши данные для регистрации");
@@ -99,7 +99,7 @@ private void ShowRegisterWindow() {
         final MaterialEditText name = register_window.findViewById(R.id.nameField);
         final MaterialEditText phone = register_window.findViewById(R.id.phoneField);
 
-////////////////////////////         Диалоговое окно для регистрации        ///////////////////////
+////////////////////////////         Диалоговое окно для регистрации        ////////////////////////
 
         dialog.setNegativeButton("Назад", new DialogInterface.OnClickListener() {
 
@@ -140,15 +140,16 @@ private void ShowRegisterWindow() {
                             Snackbar.LENGTH_SHORT).show();
                     return;
                 }
-////////////////////////////         Диалоговое окно для регистрации        ///////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                                        //// Registration itself ////
+///////////////                      регистрируем пользователя в бд             ////////////////////
+
 
                 auth.createUserWithEmailAndPassword(email.getText().toString(), pass.getText().
                         toString())
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
 
-                /////// создание нового пользователя в бд с введенными ранее полями ///////
+////////////////////     Создание нового пользователя в бд с введенными ранее полями        ////////
 
                             @Override
                             public void onSuccess(AuthResult authResult) {
@@ -158,13 +159,16 @@ private void ShowRegisterWindow() {
                                 user.setPhone(phone.getText().toString());
                                 user.setPass(pass.getText().toString());
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////   Создаем пользователя в базе и, если такого пользователя нет, - ////////////
+/////////////                              выводим сообщение                      //////////////////
+
                             users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                              .setValue(user)
                              .addOnSuccessListener(new OnSuccessListener<Void>() {
                                  @Override
                                  public void onSuccess(Void aVoid) {
-
-                 /////// создаем пользователя в базе и выводим сообщение  ///////
 
                                  Snackbar.make(relative, "Пользователь добавлен!",
                                          Snackbar.LENGTH_SHORT).show();
@@ -177,13 +181,12 @@ private void ShowRegisterWindow() {
         dialog.show();
 }
 
-
-/////////////////////////////           Registration window           /////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-///////////////////////////////         Logging in              ///////////////////////////////
+
+///////////////////////////////          Logging in              ///////////////////////////////////
 
 
     private void Login(){
@@ -203,8 +206,5 @@ private void ShowRegisterWindow() {
         });
     }
 
-///////////////////////////////         Logging in              ///////////////////////////////
-
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
 }
