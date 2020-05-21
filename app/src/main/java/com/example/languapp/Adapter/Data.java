@@ -32,4 +32,17 @@ public class Data {
             "Кошка"
     };
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static String[] tests = new String[] {
+            "Home",
+            "Kitchen",
+            "Rat",
+            "Waterpool",
+            "Cat"
+    };
+
+    public static String[] titleTests = new String[] {
+            "Test",
+    };
+
 }

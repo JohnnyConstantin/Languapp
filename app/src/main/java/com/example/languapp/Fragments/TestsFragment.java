@@ -14,7 +14,7 @@ import com.example.languapp.R;
 public class TestsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d("Fragment ", "Если ты видишь эту надпись, значит я работаю");
+        Log.d("Fragment Tests", "Если ты видишь эту надпись, значит я работаю");
 
         View v = inflater.inflate(R.layout.fragment_tests, container, false);
 
@@ -24,7 +24,7 @@ public class TestsFragment extends Fragment {
 ///////////             my_recycler_view - id контейнера в fragment_tests.xml            ///////////
 
 
-        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.my_recycler_view);
+        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.my_recycler_view_test);
 
         MyAdapter listAdapter = new MyAdapter();
         recyclerView.setAdapter(listAdapter);
