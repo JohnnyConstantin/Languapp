@@ -13,38 +13,45 @@ package com.example.languapp;
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
 import com.example.languapp.Models.Users;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.rengwuxian.materialedittext.MaterialEditText;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
     Button btnSignIn, btnRegister;
-    FirebaseAuth auth;
-    FirebaseDatabase db;
-    DatabaseReference users;
 
     EditText Sign_mail, Sign_pass;
     RelativeLayout relative;
-
+    private static final String BASE_URL = "https://languapp.herokuapp.com";
+    private JSONPlaceHolderApi JSONPlaceHolderApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +63,24 @@ public class MainActivity extends AppCompatActivity {
 
         relative = findViewById(R.id.root_element);
 
-        auth = FirebaseAuth.getInstance();
-        db = FirebaseDatabase.getInstance();
-        users = db.getReference("Users");
-
         Sign_mail = findViewById(R.id.mail);
         Sign_pass = findViewById(R.id.pass);
 
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
+        OkHttpClient.Builder client = new OkHttpClient.Builder()
+                .addInterceptor(interceptor);
+
+        Gson gs = new GsonBuilder().setLenient().create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gs))
+                .client(client.build())
+                .build();
+
+        JSONPlaceHolderApi = retrofit.create(JSONPlaceHolderApi.class);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -141,41 +158,21 @@ private void ShowRegisterWindow() {
                     return;
                 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
 ///////////////                      регистрируем пользователя в бд             ////////////////////
+                Users user = new Users(email.getText().toString(),pass.getText().toString(),phone.getText().toString(),name.getText().toString());
 
+                Call<Users> call = JSONPlaceHolderApi.postData(user);
 
-                auth.createUserWithEmailAndPassword(email.getText().toString(), pass.getText().
-                        toString())
-                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                call.enqueue(new Callback<Users>() {
+                    @Override
+                    public void onResponse(Call<Users> call, Response<Users> response) {
 
-////////////////////     Создание нового пользователя в бд с введенными ранее полями        ////////
+                    }
 
-                            @Override
-                            public void onSuccess(AuthResult authResult) {
-                                Users user = new Users();
-                                user.setEmail(email.getText().toString());
-                                user.setName(name.getText().toString());
-                                user.setPhone(phone.getText().toString());
-                                user.setPass(pass.getText().toString());
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//////////////////////   Создаем пользователя в базе и, если такого пользователя нет, - ////////////
-/////////////                              выводим сообщение                      //////////////////
-
-                            users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                             .setValue(user)
-                             .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                 @Override
-                                 public void onSuccess(Void aVoid) {
-
-                                 Snackbar.make(relative, "Пользователь добавлен!",
-                                         Snackbar.LENGTH_SHORT).show();
-                                 }
-                             });
-                            }
-                        });
+                    @Override
+                    public void onFailure(Call<Users> call, Throwable t) {
+                    }
+                });
             }
         });
         dialog.show();
@@ -188,23 +185,38 @@ private void ShowRegisterWindow() {
 
 ///////////////////////////////          Logging in              ///////////////////////////////////
 
-
     private void Login(){
-
-        auth.signInWithEmailAndPassword(Sign_mail.getText().toString(), Sign_pass.getText().toString())
-                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                    startActivity(new Intent(MainActivity.this, Home.class ));
-                    finish();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
+        Users log = new Users(Sign_mail.getText().toString(), Sign_pass.getText().toString());
+        Call<String> ask = JSONPlaceHolderApi.login(log);
+        ask.enqueue(new Callback<String>() {
             @Override
-            public void onFailure(@NonNull Exception e) {
-                Snackbar.make(relative, "Ошибка авторизации " + e.getMessage(), Snackbar.LENGTH_SHORT).show();
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.body() == null){
+                    Toast.makeText(MainActivity.this, "There is no such user. Check your mail and password",
+                            Toast.LENGTH_LONG).show();
+                }
+                else if(response.body().equals("Login"))
+                {
+                    startActivity(new Intent(MainActivity.this, Home.class));
+                    finish();
+                }
+                else if(response.body().equals("Mail"))
+                {
+                    Toast.makeText(MainActivity.this, "Incorrect email", Toast.LENGTH_LONG).show();
+                } else{
+                    Toast.makeText(MainActivity.this, "Incorrect password", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                t.printStackTrace();
+                Toast.makeText(MainActivity.this, "Something went wrong, check your connection",
+                        Toast.LENGTH_LONG).show();
             }
         });
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
 }

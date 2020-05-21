@@ -1,46 +1,75 @@
 package com.example.languapp.Models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Users {
-    private String name, email, phone, pass;
+    @SerializedName("mail")
+    @Expose
+    private String mail;
+    @SerializedName("pass")
+    @Expose
+    private String pass;
+    @SerializedName("phone")
+    @Expose
+    private String phone;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("id")
+    @Expose
+    private int id;
 
-    public String getName() {
-        return name;
+    public Users(String mail, String pass)
+    {
+        this.mail = mail;
+        this.pass = pass;
     }
 
-    public String getEmail() {
-        return email;
+    public Users(String mail, String pass, String phone, String name) {
+        this.mail = mail;
+        this.pass = pass;
+        this.phone = phone;
+        this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getPass() {
         return pass;
     }
 
-    public Users(String name, String enail, String phone, String pass) {
-        this.name = name;
-        this.email = enail;
-        this.phone = phone;
+    public void setPass(String pass) {
         this.pass = pass;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String enail) {
-        this.email = enail;
+    public String getPhone() {
+        return phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public String getName() {
+        return name;
     }
 
-    public Users() {}
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
