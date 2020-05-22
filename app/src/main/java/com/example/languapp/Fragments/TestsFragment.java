@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.languapp.Adapter.MyAdapter;
+import com.example.languapp.Adapter.MyAdapterTest;
 import com.example.languapp.R;
 
 public class TestsFragment extends Fragment {
@@ -26,7 +26,7 @@ public class TestsFragment extends Fragment {
 
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.my_recycler_view_test);
 
-        MyAdapter listAdapter = new MyAdapter();
+        MyAdapterTest listAdapter = new MyAdapterTest();
         recyclerView.setAdapter(listAdapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);

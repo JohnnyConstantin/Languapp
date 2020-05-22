@@ -20,6 +20,10 @@ public class Users {
     @Expose
     private int id;
 
+    public String toString(){
+
+        return "test";
+    }
     public Users(String mail, String pass)
     {
         this.mail = mail;

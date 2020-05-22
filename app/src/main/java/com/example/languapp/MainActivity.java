@@ -15,11 +15,11 @@ package com.example.languapp;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -32,9 +32,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.rengwuxian.materialedittext.MaterialEditText;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -166,7 +163,7 @@ private void ShowRegisterWindow() {
                 call.enqueue(new Callback<Users>() {
                     @Override
                     public void onResponse(Call<Users> call, Response<Users> response) {
-
+                        System.out.println(response);
                     }
 
                     @Override
@@ -197,6 +194,22 @@ private void ShowRegisterWindow() {
                 }
                 else if(response.body().equals("Login"))
                 {
+                    Call<Users> dataUser = JSONPlaceHolderApi.getData(Sign_mail.getText().toString());
+                    dataUser.enqueue(new Callback<Users>() {
+                        @Override
+                        public void onResponse(Call<Users> call, Response<Users> response) {
+                            try {
+                                assert response.body() != null;
+                                System.out.println(response.toString());
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Users> call, Throwable t) {
+                        }
+                    });
                     startActivity(new Intent(MainActivity.this, Home.class));
                     finish();
                 }

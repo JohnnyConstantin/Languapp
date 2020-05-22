@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.fragment.app.Fragment;
 import com.example.languapp.R;
 
@@ -22,11 +24,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     final static int GALLERY_RES = 1;
     Button btn;
     ImageView imageView;
+    TextView name,phone,mail;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
        View v = inflater.inflate(R.layout.fragment_home, container, false);
+
+       name = (TextView) v.findViewById(R.id.cur_name);
+       phone = (TextView) v.findViewById(R.id.cur_phone);
+       mail = (TextView) v.findViewById(R.id.cur_mail);
+
 
        btn = (Button) v.findViewById(R.id.add);
        imageView = (ImageView) v.findViewById(R.id.profile_image);

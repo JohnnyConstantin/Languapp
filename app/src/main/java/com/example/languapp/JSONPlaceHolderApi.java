@@ -10,6 +10,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.GET;
 import retrofit2.http.HEAD;
+import retrofit2.http.HTTP;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -20,6 +21,10 @@ public interface JSONPlaceHolderApi {
 
     @GET("/posts/{id}")
     Call<Users> getPostWithID(@Path("id") int id);
+
+    @POST("/data")
+    Call<Users> getData(@Body String mail);
+
 
     @POST("/addUser")
     Call<Users> postData(@Body Users data);

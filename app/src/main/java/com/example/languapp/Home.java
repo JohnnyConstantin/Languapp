@@ -22,7 +22,6 @@ public class Home extends MainActivity {
         BottomNavigationView bN = findViewById(R.id.bottom_navigation);
         bN.setOnNavigationItemSelectedListener(navListener);
 
-
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment()).commit();
     }

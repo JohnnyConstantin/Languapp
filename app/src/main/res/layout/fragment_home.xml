@@ -153,7 +153,6 @@
         android:layout_marginStart="70dp"
         android:layout_marginTop="20dp"
         android:layout_toEndOf="@+id/phone"
-        android:text="zkonst12@gmail.com"
         android:textColor="@color/LightGrey"
         android:textSize="18sp" />
 
@@ -165,7 +164,6 @@
         android:layout_marginStart="70dp"
         android:layout_marginTop="20dp"
         android:layout_toEndOf="@+id/phone"
-        android:text="Константин"
         android:textColor="@color/LightGrey"
         android:textSize="18sp" />
 
@@ -177,7 +175,6 @@
         android:layout_marginStart="70dp"
         android:layout_marginTop="20dp"
         android:layout_toEndOf="@+id/phone"
-        android:text="89645645428"
         android:textColor="@color/LightGrey"
         android:textSize="18sp" />
 
