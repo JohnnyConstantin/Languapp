@@ -1,8 +1,17 @@
 <resources>
-    <string name="app_name">Languapp</string>
-    <string name="pass">password</string>
-    <string name="name">name</string>
-    <string name="sign">Sign in</string>
-    <string name="forgot">Forgot password?</string>
-    <string name="reg">Do not have an account?</string>
+    <string name="app_name">languapp</string>
+    <string name="pass">Пароль</string>
+    <string name="sign">Войти</string>
+    <string name="forgot">Забыли пароль?</string>
+    <string name="reg">Нет аккаунта?</string>
+    <string name="email">Почта</string>
+    <string name="mail">Введите Вашу почту</string>
+    <string name="password">Введите Ваш пароль</string>
+    <string name="type_your_name">Введите Ваше имя</string>
+    <string name="type_your_phone">Введите свой телефон</string>
+    <string name="lk">Личный кабинет</string>
+    <string name="add">+</string>
+    <string name="data">Ваши данные</string>
+    <string name="phone">Телефон</string>
+    <string name="name">Имя</string>
 </resources>

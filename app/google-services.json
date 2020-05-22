@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "494530559269",
+    "firebase_url": "https://languapp-5a1f1.firebaseio.com",
+    "project_id": "languapp-5a1f1",
+    "storage_bucket": "languapp-5a1f1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494530559269:android:7982aeecb8f365ef2aaecc",
+        "android_client_info": {
+          "package_name": "com.example.languapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494530559269-47mke9ej1kagss715attjnf76c2ubiuk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.languapp",
+            "certificate_hash": "1c2ad0abe0e1e5b83b5ee85e260013d1d2e3ff60"
+          }
+        },
+        {
+          "client_id": "494530559269-7g2tlcvc85l3tvb9nopa9c7f6fjf997t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9vybtdZCoISPNutR1-JwDQmdViH9bbGw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "494530559269-7g2tlcvc85l3tvb9nopa9c7f6fjf997t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
