@@ -183,23 +183,6 @@ private void ShowRegisterWindow() {
 ///////////////////////////////          Logging in              ///////////////////////////////////
 
     private void Login(){
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        OkHttpClient.Builder client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor);
-
-        Gson gso = new GsonBuilder().
-                setLenient().
-                create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gso))
-                .client(client.build())
-                .build();
-
-        JSONPlaceHolderApi = retrofit.create(JSONPlaceHolderApi.class);
 
         Users log = new Users(Sign_mail.getText().toString(), Sign_pass.getText().toString());
         Call<String> ask = JSONPlaceHolderApi.login(log);
@@ -212,6 +195,23 @@ private void ShowRegisterWindow() {
                 }
                 else if(response.body().equals("Login"))
                 {
+                    HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+                    interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+                    OkHttpClient.Builder client = new OkHttpClient.Builder()
+                            .addInterceptor(interceptor);
+
+                    Gson gso = new GsonBuilder().
+                            setLenient().
+                            create();
+
+                    Retrofit retrofit2 = new Retrofit.Builder()
+                            .baseUrl(BASE_URL)
+                            .addConverterFactory(GsonConverterFactory.create(gso))
+                            .client(client.build())
+                            .build();
+
+                    JSONPlaceHolderApi = retrofit2.create(JSONPlaceHolderApi.class);
                     Call<Users> dataUser = JSONPlaceHolderApi.getData(Sign_mail.getText().toString());
                     dataUser.enqueue(new Callback<Users>() {
                         @Override
