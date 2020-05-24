@@ -4,20 +4,20 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Users {
-    @SerializedName("mail")
-    @Expose
+//    @SerializedName("mail")
+//    @Expose
     private String mail;
-    @SerializedName("pass")
-    @Expose
+//    @SerializedName("pass")
+//    @Expose
     private String pass;
-    @SerializedName("phone")
-    @Expose
+//    @SerializedName("phone")
+//    @Expose
     private String phone;
-    @SerializedName("name")
-    @Expose
+//    @SerializedName("name")
+//    @Expose
     private String name;
-    @SerializedName("id")
-    @Expose
+//    @SerializedName("id")
+//    @Expose
     private int id;
 
     public String toString(){

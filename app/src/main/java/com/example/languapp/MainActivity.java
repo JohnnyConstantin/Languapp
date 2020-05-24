@@ -33,8 +33,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -62,22 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
         Sign_mail = findViewById(R.id.mail);
         Sign_pass = findViewById(R.id.pass);
-
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        OkHttpClient.Builder client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor);
-
-        Gson gs = new GsonBuilder().setLenient().create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gs))
-                .client(client.build())
-                .build();
-
-        JSONPlaceHolderApi = retrofit.create(JSONPlaceHolderApi.class);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -185,7 +167,18 @@ private void ShowRegisterWindow() {
     private void Login(){
 
         Users log = new Users(Sign_mail.getText().toString(), Sign_pass.getText().toString());
-        Call<String> ask = JSONPlaceHolderApi.login(log);
+
+        Gson gs = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        Retrofit retrofit2 = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gs))
+                .build();
+
+        final JSONPlaceHolderApi test = retrofit2.create(JSONPlaceHolderApi.class);
+        Call<String> ask = test.login(log);
         ask.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -195,24 +188,8 @@ private void ShowRegisterWindow() {
                 }
                 else if(response.body().equals("Login"))
                 {
-                    HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-                    interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-                    OkHttpClient.Builder client = new OkHttpClient.Builder()
-                            .addInterceptor(interceptor);
-
-                    Gson gso = new GsonBuilder().
-                            setLenient().
-                            create();
-
-                    Retrofit retrofit2 = new Retrofit.Builder()
-                            .baseUrl(BASE_URL)
-                            .addConverterFactory(GsonConverterFactory.create(gso))
-                            .client(client.build())
-                            .build();
-
-                    JSONPlaceHolderApi = retrofit2.create(JSONPlaceHolderApi.class);
-                    Call<Users> dataUser = JSONPlaceHolderApi.getData(Sign_mail.getText().toString());
+                    Call<Users> dataUser = test.getData(Sign_mail.getText().toString());
                     dataUser.enqueue(new Callback<Users>() {
                         @Override
                         public void onResponse(Call<Users> call, Response<Users> response) {
