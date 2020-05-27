@@ -195,7 +195,7 @@ private void ShowRegisterWindow() {
                         public void onResponse(Call<Users> call, Response<Users> response) {
                             try {
                                 assert response.body() != null;
-                                System.out.println(response.toString());
+                                System.out.println("Successful");
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
