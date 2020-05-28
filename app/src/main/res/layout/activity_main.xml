@@ -86,19 +86,6 @@
         android:inputType="textPersonName"
         android:textSize="16dp" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnSignIn"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="204dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/forgot"
-        android:textColor="#FF9800" />
-
     <Button
         android:id="@+id/btnRegister"
         style="@android:style/Widget.Holo.Light.Button.Inset"
